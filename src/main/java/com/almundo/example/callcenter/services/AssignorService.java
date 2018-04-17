@@ -19,16 +19,11 @@ public class AssignorService {
         employees = Collections.synchronizedList(new ArrayList<>());
     }
 
-    public boolean assignCall(Call c) {
+    public boolean dispatchCall(Call c) {
         LOGGER.info("Assigning "+c.getName()+"...");
-        Employee e;
         boolean callTaken = false;
         for (int i = 0 ; i < employees.size() && !callTaken; i++) {
-            if (!(e = employees.get(i)).isBusy()) {
-                LOGGER.info(c.getName()+" assigned to employee number "+i);
-                e.takeCall(c);
-                callTaken = true;
-            }
+            callTaken = employees.get(i).takeCall(c);
         }
         if(!callTaken) {
             LOGGER.info("I'm busy. "+c.getName()+" cannot be assigned.");

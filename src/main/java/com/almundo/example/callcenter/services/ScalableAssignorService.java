@@ -15,14 +15,13 @@ public class ScalableAssignorService extends AssignorService {
         this.superior = superior;
     }
 
-    public boolean assignCall(Call c) {
-        LOGGER.info("Assigning "+c.getName()+"...");
-        boolean callTaken = super.assignCall(c);
+    @Override
+    public boolean dispatchCall(Call c) {
+        boolean callTaken = super.dispatchCall(c);
         if (!callTaken) {
             LOGGER.info("I'm busy. Scaling "+c.getName()+"...");
-            callTaken = superior.assignCall(c);
+            callTaken = superior.dispatchCall(c);
         }
-        LOGGER.info("Call: "+c.getName()+" ended.");
 
         return callTaken;
     }
