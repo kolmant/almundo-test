@@ -8,6 +8,9 @@ import org.slf4j.LoggerFactory;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
+/**
+ * Emulates the basic employee behavior.
+ */
 @Setter
 @Getter
 public class BasicEmployee extends Employee {
@@ -22,6 +25,11 @@ public class BasicEmployee extends Employee {
         this.name = name;
     }
 
+    /**
+     * An employee can take a call if he is not busy in another call
+     * @param c The call
+     * @return true if the employee took the call, false otherwise
+     */
     @Override
     public Boolean takeCall(Call c) {
         boolean callTaken = false;

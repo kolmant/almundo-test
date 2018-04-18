@@ -7,6 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
+/**
+ * Dispatches incoming calls.
+ */
 @Service
 public class Dispatcher  {
 
@@ -18,6 +21,12 @@ public class Dispatcher  {
 
     private final Logger LOGGER = LoggerFactory.getLogger(this.getClass());
 
+    /**
+     * Tries to dispatch a call. If a call was not assigned, it will
+     * retry to assign it <i>maxRetries</i> times.
+     * @param c The call to be dispatched.
+     * @return true if the call was assigned, false otherwise
+     */
     public boolean dispatchCall(Call c) {
         Integer numberOfRetries = 0;
         boolean callTaken = false;

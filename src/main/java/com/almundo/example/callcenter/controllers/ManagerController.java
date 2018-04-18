@@ -10,8 +10,12 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.concurrent.atomic.AtomicInteger;
 
+/**
+ * Handles incoming calls.
+ */
 @RestController
 @RequestMapping(value = Router.BASE_PATH, produces = {MediaType.APPLICATION_JSON_UTF8_VALUE})
 public class ManagerController {
@@ -24,8 +28,14 @@ public class ManagerController {
     @Autowired
     private CallProperties properties;
 
+    /**
+     * Tries to assign a call to an employee.
+     * @return true if the call was assigned, false otherwise.
+     */
     @GetMapping(value = Router.TAKE_CALL)
-    public ResponseEntity<Boolean> takeCall() {
-        return new ResponseEntity<>(dispatcher.dispatchCall(new Call("Call "+numberOfCalls.addAndGet(1), properties)), HttpStatus.OK);
+    public ResponseEntity<HashMap<String, Boolean>> takeCall() {
+        HashMap<String, Boolean> response = new HashMap<>();
+        response.put("assigned", dispatcher.dispatchCall(new Call("Call "+numberOfCalls.addAndGet(1), properties)));
+        return new ResponseEntity<>(response, HttpStatus.OK);
     }
 }

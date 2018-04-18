@@ -1,7 +1,9 @@
 package com.almundo.example.callcenter.utils;
 
 import lombok.Getter;
-
+/**
+ * Call properties model.
+ */
 @Getter
 public class CallProperties {
 
