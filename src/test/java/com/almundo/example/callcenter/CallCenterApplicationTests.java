@@ -16,6 +16,11 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.Arrays;
 
+/**
+ * Application tests. This tests includes
+ * multiple calls at the same time using
+ * scalable and non-scalable behaviours.
+ */
 @ActiveProfiles("test")
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -40,7 +45,7 @@ public class CallCenterApplicationTests {
 		for(int i = 0 ; i < calls.length; i++){
 			int callNumber = i;
 			calls[i] = new Thread(() ->
-					responses[callNumber] = dispatcher.dispatchCall(new Call("Call "+callNumber, properties))
+				responses[callNumber] = dispatcher.dispatchCall(new Call("Call "+callNumber, properties))
 			);
 			calls[i].start();
 		}
@@ -66,7 +71,7 @@ public class CallCenterApplicationTests {
 		for(int i = 0 ; i < calls.length; i++){
 			int callNumber = i;
 			calls[i] = new Thread(() ->
-					responses[callNumber] = dispatcher.dispatchCall(new Call("Call "+callNumber, properties))
+				responses[callNumber] = dispatcher.dispatchCall(new Call("Call "+callNumber, properties))
 			);
 			calls[i].start();
 		}
@@ -92,7 +97,7 @@ public class CallCenterApplicationTests {
 		for(int i = 0 ; i < calls.length; i++){
 			int callNumber = i;
 			calls[i] = new Thread(() ->
-					responses[callNumber] = dispatcher.dispatchCall(new Call("Call "+callNumber, properties))
+				responses[callNumber] = dispatcher.dispatchCall(new Call("Call "+callNumber, properties))
 			);
 			calls[i].start();
 		}
@@ -118,7 +123,7 @@ public class CallCenterApplicationTests {
 		for(int i = 0 ; i < calls.length; i++){
 			int callNumber = i;
 			calls[i] = new Thread(() ->
-					responses[callNumber] = service.dispatchCall(new Call("Call "+callNumber, properties))
+				responses[callNumber] = service.dispatchCall(new Call("Call "+callNumber, properties))
 			);
 			calls[i].start();
 		}
@@ -144,8 +149,8 @@ public class CallCenterApplicationTests {
 		for(int i = 0 ; i < calls.length; i++){
 			int callNumber = i;
 			calls[i] = new Thread(() -> {
-				responses[callNumber] = dispatcher.dispatchCall(new Call("Call " + callNumber, properties));
-			}
+					responses[callNumber] = dispatcher.dispatchCall(new Call("Call " + callNumber, properties));
+				}
 			);
 			calls[i].start();
 		}
