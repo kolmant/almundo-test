@@ -1,8 +1,5 @@
 package com.almundo.example.callcenter.services;
 
-public class DirectorService extends ScalableAssignorService {
+public class DirectorService extends AssignorService {
 
-    public DirectorService(AssignorService superior) {
-        super(superior);
-    }
 }

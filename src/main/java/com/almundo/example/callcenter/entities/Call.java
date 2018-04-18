@@ -16,7 +16,7 @@ public class Call extends Thread {
 
     public Call(String name, CallProperties prop) {
         super(name);
-        callDuration = random.nextInt(prop.getMaxDuration()-prop.getMinDuration()) + prop.getMinDuration()*1000;
+        callDuration = random.nextInt(prop.getMaxDuration()-prop.getMinDuration()) + prop.getMinDuration();
     }
 
     @Override
